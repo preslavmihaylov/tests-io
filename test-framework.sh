@@ -7,16 +7,19 @@ if ! which $1 >/dev/null; then
 fi
 
 OUTPUT_DIR=output
+INPUT_DIR=input
 
 # traverse all files which match pattern test-input-{some number}
-for INPUT_FILE in $(ls | grep "test-[0-9]$"); do 
+for INPUT_FILE in $(ls ${INPUT_DIR} | grep "test-[0-9]\+$"); do 
+    OUTPUT_FILE=$OUTPUT_DIR/${INPUT_FILE}.out
+    EXPECTED_FILE=${INPUT_DIR}/${INPUT_FILE}.exp
+    INPUT_FILE=${INPUT_DIR}/${INPUT_FILE}
+
     # if directory doesn't exist, create it
     if ! [ -d $OUTPUT_DIR ]; then
         mkdir $OUTPUT_DIR
     fi
-
-    OUTPUT_FILE=$OUTPUT_DIR/${INPUT_FILE}-output
-    EXPECTED_FILE=${INPUT_FILE}-expected
+    
 
     # Execute program with stdin=INPUT_FILE, stdout=OUTPUT_FILE
     $1 < $INPUT_FILE > $OUTPUT_FILE
@@ -33,10 +36,10 @@ for INPUT_FILE in $(ls | grep "test-[0-9]$"); do
 
     # see if test passed
     if [[ $OUTPUT == $EXPECTED ]]; then
-        echo -e "${GREEN}Test in $INPUT_FILE passed${NC}"
+        echo -e "${GREEN}Test $INPUT_FILE passed${NC}"
     else
         # if not, print a user-friendly message for differences
-        echo -e "${RED}Test in $INPUT_FILE failed${NC}"
+        echo -e "${RED}Test $INPUT_FILE failed${NC}"
        
         echo -e "${CYAN}Actual:${NC} "
         printf "$OUTPUT\n"
