@@ -1,13 +1,15 @@
 #!/bin/bash
 
+PWD=$(dirname "$0")
+
 # check if program exists
 if ! which $1 >/dev/null; then
     echo "program $1 not found"
     exit
 fi
 
-OUTPUT_DIR=output
-INPUT_DIR=input
+OUTPUT_DIR=${PWD}/output
+INPUT_DIR=${PWD}/input
 
 # traverse all files which match pattern test-input-{some number}
 for INPUT_FILE in $(ls ${INPUT_DIR} | grep "test-[0-9]\+$"); do 
