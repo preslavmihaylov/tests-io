@@ -7,7 +7,7 @@ It works by accepting a set of `input` tests and comparing the program output to
 ### File System Structure
 ```
 ./                        --> your project directory
- /tests/**tests-io.sh**   --> the test script
+ /tests/tests-io.sh       --> the test script
        /input/            --> folder for **input** and **expected** test files
 ```
 
