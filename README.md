@@ -2,6 +2,8 @@
 A simple test framework, written in bash, for testing console applications.
 It works by accepting a set of `input` tests and comparing the program output to a set of `expected result` files.
 
+![tests-io Demo](http://pmihaylov.com/wp-content/uploads/2018/10/tests-io-demo.png)
+
 ## Usage
 ### File System Structure
 ```
@@ -28,8 +30,3 @@ The `program-name` should be a valid executable. You should also specify `the pa
 After running the tests, there is an `output` folder created, where you can inspect the actual program outputs for every test being ran.
 
 There is currently not an option for automatically deleting the folder after running the tests. But I am accepting pull requests. :) 
-
-Usage: 
-1. Put test files in the script's folder with name 'test-X', where X is some number
-2. Put expected output files in the script's folder with name 'test-X-expected'
-3. Run the script by typing 'bash test-framework.sh \<path-to-program\>'
