@@ -4,7 +4,6 @@ It works by accepting a set of `input` tests and comparing the program output to
 
 ![tests-io Demo](http://pmihaylov.com/wp-content/uploads/2018/10/tests-io-demo.png)
 
-## Usage
 ### File System Structure
 ```
 ./                        --> your project directory
