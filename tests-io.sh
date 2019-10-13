@@ -27,8 +27,8 @@ for INPUT_FILE in $(ls ${INPUT_DIR} | grep "test-[0-9]\+$"); do
     $1 < $INPUT_FILE > $OUTPUT_FILE
 
     # store contents of files in variables
-    OUTPUT=$(<$OUTPUT_FILE)
-    EXPECTED=$(<$EXPECTED_FILE)
+    OUTPUT=$(cat $OUTPUT_FILE | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
+    EXPECTED=$(cat $EXPECTED_FILE | sed -e 's/^[[:space:]]*//' | sed -e 's/[[:space:]]*$//')
 
     # color the output nicely
     GREEN='\033[0;32m'
